@@ -4,7 +4,7 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.utils.text import slugify 
-
+from django.conf import settings
 # Create your models here.
 User = settings.AUTH_USER_MODEL
 class Categories(models.Model):
@@ -32,7 +32,7 @@ class Categories(models.Model):
 class Books(models.Model):
      name = models.CharField(max_length=200, null=True, blank=True, verbose_name="Nom livre")
      slug = models.SlugField(unique=True, null=True)
-     categories = models.ManyToManyField(Categories, null=True, blank=True, on_delete=models.CASCADE, verbose_name="Categorie")
+     categories = models.ManyToManyField(Categories, blank=True, verbose_name="All Categorie")
      description = models.TextField( null=True, blank=True, verbose_name="description")
      
      user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, verbose_name="bibliothécaire")
