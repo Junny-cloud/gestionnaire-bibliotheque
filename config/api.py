@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .serializers import *
+from ..bibliotheque.serializers import *
 from rest_framework import generics
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend 

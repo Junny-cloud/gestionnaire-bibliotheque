@@ -32,7 +32,7 @@ class Categories(models.Model):
 class Books(models.Model):
      name = models.CharField(max_length=200, null=True, blank=True, verbose_name="Nom livre")
      slug = models.SlugField(unique=True, null=True)
-     categories = models.ManyToManyField(Categories, blank=True, verbose_name="All Categorie")
+     categories = models.ManyToManyField(Categories, blank=False, verbose_name="All Categorie")
      description = models.TextField( null=True, blank=True, verbose_name="description")
      
      user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, verbose_name="bibliothécaire")
