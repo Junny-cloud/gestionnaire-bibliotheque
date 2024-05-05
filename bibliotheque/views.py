@@ -23,24 +23,25 @@ class CategoriesView(APIView):
         
         
         
-class BooksView(APIView):  
+class LivresView(APIView):  
   
     def get(self, request, *args, **kwargs):  
-        result = Books.objects.all()  
-        serializers = BooksSerializer(result, many=True)  
+        result = Livres.objects.all()  
+        
+        serializers = LivresSerializer(result, many=True)  
         return Response({'status': 'success', "Livres":serializers.data}, status=200)  
   
     def post(self, request):  
-        serializer = BooksSerializer(data=request.data)  
+        serializer = LivresSerializer(data=request.data)  
         if serializer.is_valid():  
             serializer.save()  
             return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)  
         else:  
             return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         
-class BooksByCategoriesView(generics.ListAPIView):
-    serializer_class = BooksSerializer
+class LivresParCategoriesView(generics.ListAPIView):
+    serializer_class = LivresSerializer
 
     def get_queryset(self):
         categorie_id = self.kwargs['categorie_id']
-        return Books.objects.filter(categories__id=categorie_id)
+        return Livres.objects.filter(categories__id=categorie_id)

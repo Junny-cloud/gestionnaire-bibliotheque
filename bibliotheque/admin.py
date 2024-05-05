@@ -5,17 +5,17 @@ from .models import *
 
 class CategoriesAdmin(admin.ModelAdmin):
     ordering = ['id']
-    list_display = ['id', 'name']
-    list_filter = ['name']
+    list_display = ['id', 'nom']
+    list_filter = ['nom']
     
     
-class BooksAdmin(admin.ModelAdmin):
+class LivresAdmin(admin.ModelAdmin):
     ordering = ['id']
-    list_display = ['id', 'name', 'get_categories']
-    list_filter = ['name']
+    list_display = ['id', 'nom', 'get_categories']
+    list_filter = ['nom']
     
     def get_categories(self, obj):
         return ", ".join([categorie.name for categorie in obj.categories.all()])
     
 admin.site.register(Categories, CategoriesAdmin)
-admin.site.register(Books, BooksAdmin)
+admin.site.register(Livres, LivresAdmin)
