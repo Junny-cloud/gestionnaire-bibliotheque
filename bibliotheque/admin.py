@@ -11,11 +11,11 @@ class CategoriesAdmin(admin.ModelAdmin):
     
 class LivresAdmin(admin.ModelAdmin):
     ordering = ['id']
-    list_display = ['id', 'nom', 'get_categories']
+    list_display = ['id', 'nom', 'get_categories', 'user']
     list_filter = ['nom']
     
     def get_categories(self, obj):
-        return ", ".join([categorie.name for categorie in obj.categories.all()])
+        return ", ".join([categorie.nom for categorie in obj.categories.all()])
     
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Livres, LivresAdmin)

@@ -1,10 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from django.conf import settings
 
-
-# Create your models here.
-from config import settings
 
 class CustomUser(AbstractUser):
     telephone = models.CharField(max_length=30, null=True, blank=True, verbose_name="Téléphone")
